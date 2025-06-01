@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.enesturkoglu.pawtrackv2.screens.AddPetScreen
+import com.enesturkoglu.pawtrackv2.screens.addpet.AddPetScreen
 import com.enesturkoglu.pawtrackv2.screens.HomeScreen
 
 @Composable

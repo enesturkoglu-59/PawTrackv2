@@ -1,5 +1,6 @@
-package com.enesturkoglu.pawtrackv2.screens
+package com.enesturkoglu.pawtrackv2.screens.addpet
 
+import android.app.Application
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -29,6 +30,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.enesturkoglu.pawtrackv2.data.PetDatabaseInstance
 import com.enesturkoglu.pawtrackv2.data.PetEntity
@@ -37,13 +40,13 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun AddPetScreen(navController: NavController) {
-    val petNameValue = remember { mutableStateOf("") }
-    val petAgeValue = remember { mutableStateOf("") }
-    val petWeightValue = remember { mutableStateOf("") }
+
     val context = LocalContext.current
-    val db = remember { PetDatabaseInstance.getDatabase(context)}
-    val dao = db.petDao()
-    val coroutineScope = rememberCoroutineScope()
+    val viewModel: AddPetScreenViewModel = viewModel(
+        factory = ViewModelProvider.AndroidViewModelFactory.getInstance(context.applicationContext as Application)
+    )
+
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -81,8 +84,8 @@ fun AddPetScreen(navController: NavController) {
 
             TextField(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 15.dp),
-                value = petNameValue.value ,
-                onValueChange = {petNameValue.value  = it },
+                value = viewModel.petNameValue ,
+                onValueChange = {viewModel.petNameValue = it },
                 label = { Text("Pet Name") }
             )
 
@@ -90,8 +93,8 @@ fun AddPetScreen(navController: NavController) {
 
             TextField(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 15.dp),
-                value = petAgeValue.value ,
-                onValueChange = { petAgeValue.value = it },
+                value = viewModel.petAgeValue ,
+                onValueChange = { viewModel.petAgeValue = it },
                 label = { Text("Pet Age") }
             )
 
@@ -99,8 +102,8 @@ fun AddPetScreen(navController: NavController) {
 
             TextField(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 15.dp),
-                value =petWeightValue.value ,
-                onValueChange = {petWeightValue.value  = it },
+                value =viewModel.petWeightValue ,
+                onValueChange = {viewModel.petWeightValue  = it },
                 label = { Text("Pet Weight") }
             )
 
@@ -108,14 +111,9 @@ fun AddPetScreen(navController: NavController) {
 
             Button(
                 modifier = Modifier.size(width = 200.dp, height = 50.dp),
-                onClick = { coroutineScope.launch {
-                    dao.insertPet(PetEntity(name = petNameValue.value, age = petAgeValue.value, weight = petWeightValue.value))
-               petNameValue.value=""
-                navController.navigate(Home(10000))}   },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFFF5722),
-                    contentColor = Color.White
-                )
+                onClick = {viewModel.addPet(PetEntity(name = viewModel.petNameValue, age = viewModel.petAgeValue, weight = viewModel.petWeightValue),navController=navController)
+               }
+
             ) {
                 Text("Save")
             }
