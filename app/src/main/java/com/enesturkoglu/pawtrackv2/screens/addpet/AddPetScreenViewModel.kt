@@ -13,7 +13,9 @@ import com.enesturkoglu.pawtrackv2.data.PetDataBase
 import com.enesturkoglu.pawtrackv2.data.PetDatabaseInstance
 import com.enesturkoglu.pawtrackv2.data.PetEntity
 import com.enesturkoglu.pawtrackv2.navigation.Home
+import com.enesturkoglu.pawtrackv2.navigation.PetList
 import com.enesturkoglu.pawtrackv2.repo.PetRepository
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 class AddPetScreenViewModel(aplication:Application):AndroidViewModel(aplication){
@@ -27,9 +29,9 @@ class AddPetScreenViewModel(aplication:Application):AndroidViewModel(aplication)
     fun addPet(petEntity: PetEntity,navController: NavController){
         viewModelScope.launch {
             repository.addPet(petEntity)
-            navController.navigate(Home(1))
+            navController.navigate(PetList)
         }
     }
 
-    val pets = repository.getAllPets().asLiveData()
+
 }

@@ -7,3 +7,6 @@ data class Home(val petId:Int)
 
 @Serializable
 object AddPet
+
+@Serializable
+object PetList

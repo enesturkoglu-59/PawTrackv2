@@ -39,12 +39,9 @@ import com.enesturkoglu.pawtrackv2.navigation.Home
 import kotlinx.coroutines.launch
 
 @Composable
-fun AddPetScreen(navController: NavController) {
+fun AddPetScreen(navController: NavController,viewModel: AddPetScreenViewModel) {
 
-    val context = LocalContext.current
-    val viewModel: AddPetScreenViewModel = viewModel(
-        factory = ViewModelProvider.AndroidViewModelFactory.getInstance(context.applicationContext as Application)
-    )
+
 
 
     Box(
