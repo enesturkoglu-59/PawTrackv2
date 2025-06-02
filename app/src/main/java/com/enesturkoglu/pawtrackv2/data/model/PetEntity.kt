@@ -1,6 +1,5 @@
-package com.enesturkoglu.pawtrackv2.data
+package com.enesturkoglu.pawtrackv2.data.model
 
-import androidx.compose.ui.text.font.FontWeight
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

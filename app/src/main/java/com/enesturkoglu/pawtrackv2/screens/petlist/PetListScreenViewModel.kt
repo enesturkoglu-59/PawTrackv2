@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.enesturkoglu.pawtrackv2.data.PetDatabaseInstance
-import com.enesturkoglu.pawtrackv2.data.PetEntity
+import com.enesturkoglu.pawtrackv2.data.model.PetEntity
 import com.enesturkoglu.pawtrackv2.repo.PetRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -1,10 +1,11 @@
-package com.enesturkoglu.pawtrackv2.data
+package com.enesturkoglu.pawtrackv2.data.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.enesturkoglu.pawtrackv2.data.model.PetEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

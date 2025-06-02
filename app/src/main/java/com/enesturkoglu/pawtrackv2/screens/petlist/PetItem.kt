@@ -12,11 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.enesturkoglu.pawtrackv2.data.PetEntity
+import com.enesturkoglu.pawtrackv2.data.model.PetEntity
 import com.enesturkoglu.pawtrackv2.navigation.Home
 
 @Composable
-fun PetItem(pet: PetEntity,navController: NavController) {
+fun PetItem(pet: PetEntity, navController: NavController) {
 
     Card(
         modifier = Modifier
