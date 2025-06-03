@@ -11,10 +11,11 @@ object PetDatabaseInstance {
     fun getDatabase(context: Context): PetDataBase {
         return INSTANCE ?: synchronized(this) {
             val instance = Room.databaseBuilder(
-                context.applicationContext,
-                PetDataBase::class.java,
-                "pet_database"
-            ).build()
+                        context.applicationContext,
+                        PetDataBase::class.java,
+                        "pet_database"
+                    ).fallbackToDestructiveMigration(true)
+                .build()
             INSTANCE = instance
             instance
         }

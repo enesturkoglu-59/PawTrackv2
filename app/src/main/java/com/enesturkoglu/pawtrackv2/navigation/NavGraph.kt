@@ -13,6 +13,8 @@ import com.enesturkoglu.pawtrackv2.screens.HomeScreen
 import com.enesturkoglu.pawtrackv2.screens.addpet.AddPetScreenViewModel
 import com.enesturkoglu.pawtrackv2.screens.petlist.PetListScreen
 import com.enesturkoglu.pawtrackv2.screens.petlist.PetListScreenViewModel
+import com.enesturkoglu.pawtrackv2.screens.tasks.TaskScreen
+import com.enesturkoglu.pawtrackv2.screens.tasks.TaskScreenViewModel
 
 @Composable
 fun MyApp(){
@@ -20,13 +22,15 @@ fun MyApp(){
     val context = LocalContext.current.applicationContext as Application
     val petListViewModel = remember { PetListScreenViewModel(context) }
     val addPetViewModel = remember {AddPetScreenViewModel(context)}
+    val taskScreenViewModel = remember { TaskScreenViewModel(context) }
     val navController = rememberNavController()
     NavHost(startDestination = AddPet, navController = navController ) {
 
         composable<AddPet> { AddPetScreen(navController = navController, viewModel = addPetViewModel) }
 
         composable<PetList>{
-            PetListScreen(navController=navController, viewModel =petListViewModel )
+            //PetListScreen(navController=navController, viewModel =petListViewModel )
+            TaskScreen(taskScreenViewModel)
         }
         composable<Home> {
             val petId = it.arguments?.getInt("petId")
